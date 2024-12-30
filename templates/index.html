@@ -1,0 +1,39 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Data Receive</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    </head>
+    <body>
+        <h1>Data Received</h1>
+        <div id="data"></div>
+        <button id="request-info">Request Info</button>
+        <!-- Button to request info -->
+
+        <script>
+            const socket = io();
+
+            // Listen for the update_data event
+            socket.on("update_data", function (msg) {
+                document.getElementById("data").innerHTML = JSON.stringify(
+                    msg.data
+                );
+            });
+
+            // Listen for the send_info event
+            socket.on("send_info", function (msg) {
+                alert("Received Info: " + msg.info); // Display the info in an alert
+            });
+
+            // Handle button click to request info
+            document
+                .getElementById("request-info")
+                .addEventListener("click", function () {
+                    socket.emit("request_info"); // Emit request_info event to the server
+                });
+        </script>
+    </body>
+</html>
