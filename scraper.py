@@ -18,7 +18,7 @@ canvas_selector = "#myCanvas"  # Replace with the appropriate CSS selector for t
 output_filename = "output_canvas.png"  # The name of the output PNG file
 
 # Set up ChromeDriver service
-service = Service('driver/chromedriver.exe')
+service = Service('driver/chromedriver')
 
 options = webdriver.ChromeOptions()
 
